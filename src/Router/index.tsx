@@ -4,6 +4,7 @@ import ProtectedLayout from '../components/ProtectedLayout/ProtectedLayout';
 import { AuthProvider } from '../contexts/AuthProvider';
 import Login from '../pages/login/Login';
 import Register from '../pages/register/register';
+import EsqueciSenha from '../pages/ForgotPassword/esqueciSenha';  
 import { routes } from './routes';
 
 const Router = () => (
@@ -20,6 +21,7 @@ const Router = () => (
         />
         <Route path={routes.login} element={<Login />} />
         <Route path={routes.cadastro} element={<Register />} />
+        <Route path={routes.esqueciSenha} element={<EsqueciSenha />} /> 
       </Routes>
     </AuthProvider>
   </BrowserRouter>

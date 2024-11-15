@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Dongle&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Ajusta o alinhamento para o fim */
+  height: 100vh;
+  background-color: #2c2c54;
+  padding-right: 20px; /* Adiciona um espaçamento da borda direita */
+}
+
+.forgotBox {
+  background-color: #4caf50;
+  padding: 30px;
+  border-radius: 10px;
+  width: 450px;
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 255, 0, 0.5);
+}
+
+.welcome {
+  font-family: 'Dongle', sans-serif;
+  color: #fff;
+  margin-bottom: 20px;
+  font-size: 200%;
+}
+
+.submitButton, .backToLogin {
+  font-family: 'Dongle', sans-serif; /* Aplica a mesma fonte */
+  color: #fff;
+  margin-bottom: 20px;
+  font-size: 150%;
+}
+
+.forgotBox h2 {
+  margin-bottom: 20px;
+}
+
+.forgotBox form {
+  display: flex;
+  flex-direction: column;
+}
+
+.forgotBox input {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.forgotBox button {
+  padding: 15px;
+  background-color: #800080;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.forgotBox button:hover {
+  background-color: #5a005a;
+}
+
+.forgotBox .options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.forgotBox .options a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.forgotBox p {
+  color: #fff;
+  margin-top: 20px;
+}
+
+.forgotBox p a {
+  color: #5a005a;
+  text-decoration: none;
+}

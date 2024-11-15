@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import style from './style.module.css';
+import { routes } from '../../../Router/routes'; // Certifique-se de importar os routes
 
 const CardLogin = () => {
   const [email, setEmail] = useState('');
@@ -39,12 +40,12 @@ const CardLogin = () => {
               <input type='checkbox' />
               Lembre de mim
             </label>
-            <a href='#' className={style.forgotPassword}>
+            <Link to={routes.esqueciSenha} className={style.forgotPassword}>
               Esqueceu sua senha?
-            </a>
+            </Link>
           </div>
           <p>
-            Não é um membro? <Link to='/register'>Inscreva-se agora </Link>{' '}
+            Não é um membro? <Link to={routes.cadastro}>Inscreva-se agora</Link>
           </p>
         </form>
       </div>
@@ -53,3 +54,4 @@ const CardLogin = () => {
 };
 
 export default CardLogin;
+
