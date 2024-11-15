@@ -153,7 +153,7 @@ const MeuPonto = () => {
                 height='200px'
                 frameBorder='0'
                 style={{ border: 0 }}
-                src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyA2Vsh8WKp-wLV9jX6_GZ1VV9UR3glnsq0&q=${location.lat},${location.lng}`}
+                src={`https://www.google.com/maps/embed/v1/place?key==${location.lat},${location.lng}`}
                 allowFullScreen
                 aria-label='Mapa da sua localização'
               ></iframe>
