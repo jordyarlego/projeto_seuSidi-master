@@ -1,0 +1,64 @@
+{
+  "usuarios": [
+    {
+      "nome": "João Silva",
+      "cpf": "123.456.789-00",
+      "telefone": "(11) 98765-4321",
+      "email": "joao.silva@example.com",
+      "senha": "senha123",
+      "registrosPontos": [
+        {
+          "data": "2024-11-01",
+          "horaEntrada": "08:00",
+          "horaSaida": "17:00"
+        },
+        {
+          "data": "2024-11-02",
+          "horaEntrada": "08:15",
+          "horaSaida": "16:45"
+        }
+      ],
+      "id": "77a0"
+    },
+    {
+      "nome": "Maria Oliveira",
+      "cpf": "987.654.321-00",
+      "telefone": "(21) 91234-5678",
+      "email": "maria.oliveira@example.com",
+      "senha": "senha456",
+      "registrosPontos": [
+        {
+          "data": "2024-11-01",
+          "horaEntrada": "09:00",
+          "horaSaida": "18:00"
+        },
+        {
+          "data": "2024-11-03",
+          "horaEntrada": "08:30",
+          "horaSaida": "17:30"
+        }
+      ],
+      "id": "b8cd"
+    },
+    {
+      "nome": "Carlos Mendes",
+      "cpf": "456.123.789-00",
+      "telefone": "(31) 99876-5432",
+      "email": "carlos.mendes@example.com",
+      "senha": "senha789",
+      "registrosPontos": [
+        {
+          "data": "2024-11-02",
+          "horaEntrada": "07:45",
+          "horaSaida": "16:45"
+        },
+        {
+          "data": "2024-11-04",
+          "horaEntrada": "08:00",
+          "horaSaida": "17:00"
+        }
+      ],
+      "id": "6874"
+    }
+  ]
+}

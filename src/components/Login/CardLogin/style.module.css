@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Dongle&display=swap');
+
+.loginBox {
+  background-color: #4caf50;
+  padding: 30px;
+  border-radius: 10px;
+  width: 450px; 
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 255, 0, 0.5);
+  position: absolute;
+  bottom: 0; /* Posiciona no fundo da página */
+  right: 0; 
+  margin: 30px; 
+}
+
+.welcome {
+  font-family: 'Dongle', sans-serif;
+  color: #fff;
+  margin-bottom: 20px;
+  font-size: 200%; 
+}
+
+.submitButton, .forgotPassword, .rememberMe {
+  font-family: 'Dongle', sans-serif; /* Aplica a mesma fonte */
+  color: #fff;
+  margin-bottom: 20px;
+  font-size: 150%; /* Aumenta a fonte em 50% */
+}
+
+.loginBox h2 {
+  margin-bottom: 20px;
+}
+
+.loginBox form {
+  display: flex;
+  flex-direction: column;
+}
+
+.loginBox input {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.loginBox button {
+  padding: 15px;
+  background-color: #800080;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.loginBox button:hover {
+  background-color: #5a005a;
+}
+
+.loginBox .options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.loginBox .options label {
+  color: #fff;
+}
+
+.loginBox .options a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.loginBox p {
+  color: #fff;
+  margin-top: 20px;
+}
+
+.loginBox p a {
+  color: #5a005a;
+  text-decoration: none;
+}
+

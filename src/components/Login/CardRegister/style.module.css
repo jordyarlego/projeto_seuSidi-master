@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Dongle&display=swap');
+
+.container {
+  display: flex;
+  justify-content: flex-end; /* Alinha os itens à direita */
+  align-items: center; /* Centraliza verticalmente */
+  padding: 30px;
+  background-color: #2c2c54;
+  height: 100vh;
+  position: relative;
+}
+
+.registerBox {
+  background-color: #4caf50;
+  padding: 30px;
+  border-radius: 10px;
+  width: 450px; /* Ajuste conforme necessário */
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 255, 0, 0.5);
+  margin-right: -600px; /* Ajusta a posição da caixa de registro */
+  height: auto; /* Ajusta a altura automática */
+}
+
+.welcome {
+  font-family: 'Dongle', sans-serif;
+  color: #fff;
+  margin-bottom: 20px;
+  font-size: 200%; /* Aumenta a fonte do "Bem-vindo" em 100% */
+}
+
+.submitButton, .forgotPassword, .rememberMe {
+  font-family: 'Dongle', sans-serif; /* Aplica a mesma fonte */
+  color: #fff;
+  margin-bottom: 20px;
+  font-size: 150%; /* Aumenta a fonte em 50% */
+}
+
+.registerBox h2 {
+  margin-bottom: 20px;
+}
+
+.registerBox form {
+  display: flex;
+  flex-direction: column;
+}
+
+.registerBox input {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.registerBox button {
+  padding: 15px;
+  background-color: #800080;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.registerBox button:hover {
+  background-color: #5a005a;
+}
+
+.registerBox .options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.registerBox .options label {
+  color: #fff;
+}
+
+.registerBox .options a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.registerBox p {
+  color: #fff;
+  margin-top: 20px;
+}
+
+.registerBox p a {
+  color: #00ff99;
+  text-decoration: none;
+}
