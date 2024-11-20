@@ -39,6 +39,10 @@ npm run server
 
 Esse comando irá iniciar um servidor local em `http://localhost:3000/usuarios`, onde você pode fazer requisições à API simulada. O arquivo `db.json` contém dados de exemplo para você trabalhar, e o servidor simula as rotas RESTful como GET, POST, PUT e DELETE.
 
+
+### 4.Nesta ultima atualização, tambem é possível criar conta e logar com o localstorage, sem precisar de um login pré definido no db.json
+:bomb: prf to morrendo de sono, meu deus..
+
 ## Como Contribuir
 
 1. Faça um fork do repositório.

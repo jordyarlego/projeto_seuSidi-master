@@ -11,26 +11,27 @@
   display: flex;
   min-height: 100vh;
   background-color: #f4f4f4;
+  flex-direction: column; /* Para centralizar e distribuir o conteúdo */
 }
 
+/* Sidebar do Ponto */
 .container {
-  width: 250px;
-  background-color: #333;
+  width: 300px;
+  background-color: #222;
   color: #fff;
-  padding-top: 20px;
+  padding: 20px 10px;
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   height: 100%;
   z-index: 10;
-  box-sizing: border-box;
-  box-shadow: 4px 0 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 4px 0 6px rgba(0, 0, 0, 0.2);
   border-radius: 0 10px 10px 0;
 }
 
 .nav {
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .list {
@@ -41,45 +42,65 @@
 .item a {
   color: white;
   text-decoration: none;
-  padding: 10px;
+  padding: 15px;
   display: block;
-  font-size: 48px; /* Aumentado para 48px */
-  transition: background-color 0.3s ease, color 0.3s ease;
-  border-radius: 8px;
-  margin: 5px 0;
+  font-size: 40px;
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+  border-radius: 10px;
+  margin: 10px 0;
 }
 
 .item a:hover {
-  background-color: #555;
+  background-color: #444;
   color: #fff;
-  transform: translateX(10px);
+  transform: translateX(15px);
+}
+
+/* Relógio e Botão Sair */
+.clockContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #333;
+  border-radius: 10px;
+  padding: 10px 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.clock {
+  font-size: 2rem;
+  color: #00ff00;
+  font-weight: bold;
+  text-align: center;
+  margin-right: 20px; /* Espaçamento entre o relógio e o botão sair */
 }
 
 .logoutButton {
-  margin-top: 20px;
-  background-color: #ff0000;
+  background-color: #ff4b4b;
   color: white;
   border: none;
-  width: 10%;
-  padding: 10px;
+  padding: 10px 20px;
+  border-radius: 10px;
   cursor: pointer;
-  font-size: 32px; /* Aumentado para 32px */
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .logoutButton:hover {
-  background-color: #cc0000;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #e63939;
   transform: translateY(-2px);
 }
 
+/* Conteúdo Principal */
 .mainContent {
-  margin-left: 250px;
-  padding: 20px;
-  width: calc(100% - 250px);
+  width: 100%;
+  padding: 40px;
   box-sizing: border-box;
-  color: #333;
+  color: #ba1ac0;
+   /* Adicionando espaço para a sidebar */
 }
 
 .header {
@@ -87,202 +108,179 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  position: relative;
 }
 
 .title {
-  font-size: 160px; /* Aumentado para 160px */
+  font-size: 140px;
   font-weight: bold;
-  margin-bottom: 5px;
   color: #333;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* Estilizando a seção do carrossel */
-.carousel {
+/* Calendário */
+.calendarContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #e0e0e0; /* Fundo cinza claro */
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona sombra */
+  margin-bottom: 20px;
+  flex-direction: column;
 }
 
 .carouselButton {
-  background: none;
-  border: 1px solid #333;
-  padding: 10px;
+  background-color: transparent;
+  border: none;
+  font-size: 2rem;
+  color: #333;
   cursor: pointer;
-  font-size: 48px; /* Aumentado para 48px */
-  transition: background-color 0.3s ease;
-  background-color: #4caf50;
-  color: white;
-  border-radius: 5px;
-  margin: 0 10px;
 }
 
-.carouselButton:hover {
-  background-color: #45a049;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  transform: scale(1.1);
-}
-
-.carousel span {
-  font-size: 48px; /* Aumentado para 48px */
+.monthTitle {
+  font-size: 1.5rem;
   color: #333;
   margin: 0 10px;
-  display: inline-block;
 }
 
-/* Estilização da Tabela */
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  background: linear-gradient(135deg, #f4f4f4, #fff);
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  margin-top: 10px;
 }
 
-th, td {
-  padding: 24px 30px; /* Aumentado o padding */
+.day {
   text-align: center;
-  font-size: 32px; /* Aumentado para 32px */
-  border: 1px solid #ddd;
-  background-color: #fff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-th {
-  background-color: #f4f4f4;
-  font-weight: bold;
-}
-
-td {
-  background-color: #fafafa;
-}
-
-td button {
-  padding: 8px 12px;
-  margin: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  padding: 10px;
+  background-color: #f0f0f0;
   border-radius: 5px;
-  border: none;
-}
-
-.registerButton {
-  background-color: #4caf50; /* Verde claro */
-  color: white;
-}
-
-.registerButton:hover {
-  background-color: #45a049; /* Verde um pouco mais escuro no hover */
-  transform: translateY(-2px);
-}
-
-.suggestButton {
-  background-color: #ffc107; /* Amarelo escuro */
-  color: white;
-  padding: 10px 20px; /* Diminui o tamanho do botão */
-  border: none;
   cursor: pointer;
-  font-size: 1rem; /* Diminui o tamanho da fonte */
-  margin-right: 10px;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
 }
 
-.suggestButton:hover {
-  background-color: #ffeb3b; /* Amarelo claro */
-  transform: translateY(-2px); /* Efeito de elevação */
+.day:hover {
+  background-color: #e0e0e0;
 }
 
-/* Marcação - Iniciar, Registrar e Sugerir */
-.markingSection {
+.today {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+/* Botão Bater Ponto */
+.batidaDePontoButton {
+  background-color: #23e22a; 
+  color: white;
+  padding: 15px 30px;
+  font-size: 36px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  margin-top: -20000px; 
+  margin-left: 200px;
+}
+
+.batidaDePontoButton:hover {
+  background-color: #8600b3;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.batidaDePontoButton:active {
+  background-color: #003f7f;
+  transform: scale(0.98);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Divisão Lado a Lado */
+.content {
   display: flex;
   justify-content: space-between;
   margin-top: 30px;
 }
 
-.markingButton {
-  padding: 10px 20px;
+.timeRecordsContainer {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.summaryContainer {
+  flex: 1;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 30px;
+  background: linear-gradient(135deg, #fafafa, #fff);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 20px 30px;
+  text-align: center;
+  font-size: 30px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+}
+
+th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+td button {
+  padding: 10px 15px;
   cursor: pointer;
-  font-size: 32px; /* Aumentado para 32px */
+  font-size: 20px;
   border-radius: 5px;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+  transition: transform 0.3s, background-color 0.3s;
 }
 
-.startButton {
-  background-color: #4CAF50;
-  color: white;
-}
-
-.startButton:hover {
-  background-color: #4ac650;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transform: scale(1.05);
-}
-
-.registerButton {
-  background-color: #3f84e4;
-  color: white;
-}
-
-.registerButton:hover {
-  background-color: #0056b3;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transform: scale(1.05);
+td button:hover {
+  transform: translateY(-2px);
 }
 
 .suggestButton {
-  background-color: #FFC107;
+  background-color: #ffc107;
   color: white;
+  padding: 12px 25px;
+  font-size: 22px;
+  border-radius: 8px;
+  transition: transform 0.3s, background-color 0.3s;
 }
 
 .suggestButton:hover {
-  background-color: #e0a800;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transform: scale(1.05);
+  background-color: #ffeb3b;
+  transform: translateY(-3px);
 }
 
-/* Resultados (Aguardando Processamento e Falta) */
-.resultPending {
-  color: #FF9800;
-  font-weight: bold;
-}
-
-.resultMissing {
-  color: #f44336;
-  font-weight: bold;
-}
-
+/* Caixa de Alerta */
 .alert {
-  background-color: #ffcccc;
-  padding: 10px;
-  margin-bottom: 20px;
-  font-size: 32px; /* Aumentado para 32px */
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #ffebeb;
+  color: #333;
+  padding: 20px;
+  font-size: 30px;
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-weight: bold;
 }
 
-.summary {
-  margin-top: px;
-  padding: auto;
-  background-color: #e5ede5;
-  padding-right: 10px;
-}
-
+/* Caixa de Localização e Total de Horas */
 .totalHoursBox {
-  background-color: #4cba4f;
-  padding: 15px;
-  border-radius: 25px;
+  background-color: #4caf50;
   color: white;
-  text-align: center; /* Alinhando o texto horizontalmente ao centro */
-  font-size: 50px; 
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  
-}
-#h2{
-  background-color: black;
+  padding: 20px 30px;
+  text-align: center;
+  font-size: 40px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
 }
 
 .greenText {
@@ -291,83 +289,27 @@ td button {
 
 .map {
   margin-top: 20px;
-}
-
-.container {
-  height: 100%;
-  padding-bottom: 1px;
-  overflow: auto;
-}
-
-table {
   width: 100%;
-  margin-top: 20px;
-  border-collapse: collapse;
+  height: 200px;
 }
 
-table th, table td {
-  padding: 30px; /* Aumentado o padding */
-  justify-content: center;
-
-  text-align: flex;
-  font-size: 40px; /* Aumentado para 40px */
-  border: 1px solid #ddd;
-}
-
-table th {
-  background-color: #f4f4f4;
-}
-
-table td {
-  background-color: #f9f9f9;
-}
-
-
+/* Hero Image */
 .heroContainer {
-  display: flex; /* Usando flexbox para organizar o conteúdo lado a lado */
-  align-items: center; /* Alinha o conteúdo verticalmente no centro */
-  justify-content: flex-start; /* Alinha o conteúdo à esquerda */
-  height: 100vh; /* Garantindo que a seção ocupe toda a altura da tela */
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 .heroImage {
-  flex: 1; /* A imagem ocupa uma parte proporcional do espaço */
-  background-image: url('path/to/your/image.jpg'); /* Substitua com o caminho correto da imagem */
-  background-size: cover;
-  background-position: center;
-  height: 100%; /* Garantir que a imagem ocupe toda a altura da seção */
+  width: 10;
+  max-width: 90px;
+  height: auto;
+  position: absolute;
+  bottom: -50px;
+  right: 0; /* Adiciona esta linha para garantir que a imagem fique à direita */
+  border-radius: 10px;
+  margin-right: 20px; /* Adiciona espaçamento da borda direita */
 }
 
-.heroText {
-  flex: 2; /* O texto ocupará o dobro do espaço da imagem */
-  padding: 20px;
-  color: #fff;
-  background-color: rgba(0, 0, 0, 0.5); /* Fundo translúcido para legibilidade do texto */
-  text-align: center;
-}
-
-.heroText h1 {
-  font-size: 64px; /* Ajuste o tamanho conforme necessário */
-  margin-bottom: 20px;
-}
-
-.heroText p {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.heroText .ctaButton {
-  padding: 15px 30px;
-  font-size: 20px;
-  background-color: #FF5733; /* Cor personalizada para o botão */
-  border: none;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-  text-transform: uppercase;
-  transition: background-color 0.3s ease;
-}
-
-.heroText .ctaButton:hover {
-  background-color: #c04c2e; /* Efeito hover */
-}

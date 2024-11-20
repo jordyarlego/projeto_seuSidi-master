@@ -1,9 +1,9 @@
-import { createContext, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { IAuthProvider } from '../interfaces/IAuthProvider';
-import { IContext } from '../interfaces/IContext';
 import { IUser } from '../interfaces/IUser';
-import useNavigation from '../libs/navegate';
+import { AuthContext } from './AuthContext'; // Importa o contexto separado
 
 import {
   getUserLocalStorage,
@@ -12,47 +12,49 @@ import {
   setUserLocalStorage,
 } from './utils';
 
-export const AuthContext = createContext<IContext>({} as IContext);
-
 export const AuthProvider = ({ children }: IAuthProvider) => {
-  const [user, setUser] = useState<IUser | null>();
-  const navigate = useNavigation();
+  const [user, setUser] = useState<IUser | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const userLocalStorage = getUserLocalStorage();
-
     if (userLocalStorage) {
       setUser(userLocalStorage);
-      navigate('/inicio');
-    } else {
-      navigate('/');
     }
   }, []);
 
-  async function handleLogin(email: string, password: string) {
+  // Memoriza a função de login
+  const handleLogin = useCallback(async (email: string, password: string) => {
     const response = await loginRequest(email, password);
+    if (response) {
+      setUser(response);
+      setUserLocalStorage(response);
+      navigate('/inicio');
+    } else {
+      alert('Usuário ou senha inválidos');
+    }
+  }, [navigate]);
 
-    setUser(response);
-    setUserLocalStorage(response);
-    navigate('/inicio');
-  }
-
-  function handleLogout() {
+  // Memoriza a função de logout
+  const handleLogout = useCallback(() => {
     setUser(null);
     removeUserLocalStorage();
     navigate('/');
-  }
+  }, [navigate]);
 
+  // UseMemo agora memoriza o contexto com as dependências corretas
   const contextValue = useMemo(
     () => ({
-      ...user,
+      user,
       handleLogin,
       handleLogout,
     }),
-    [user]
+    [user, handleLogin, handleLogout] // Adiciona handleLogin e handleLogout no array de dependências
   );
 
   return (
-    <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={contextValue}>
+      {children}
+    </AuthContext.Provider>
   );
 };

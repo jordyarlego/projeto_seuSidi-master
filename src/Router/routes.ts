@@ -1,6 +1,7 @@
 export const routes = {
-    login: '/',
-    inicio: '/inicio',
-    cadastro: '/register',
-    esqueciSenha: '/esqueci-senha',
-  };
+  login: '/',                  // Página de login
+  inicio: '/inicio',            // Página inicial (também usada para "inside")
+  cadastro: '/register',       // Página de cadastro
+  esqueciSenha: '/esqueci-senha', // Página de recuperação de senha
+};
+

@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Inside from '../components/aside/meu_ponto/ponto';
-import ProtectedLayout from '../components/ProtectedLayout/ProtectedLayout';
+import Inside from '../pages/inside/Inside'; 
 import { AuthProvider } from '../contexts/AuthProvider';
 import Login from '../pages/login/Login';
 import Register from '../pages/register/register';
@@ -11,17 +10,17 @@ const Router = () => (
   <BrowserRouter>
     <AuthProvider>
       <Routes>
-        <Route
-          path={routes.inicio}
-          element={
-            <ProtectedLayout>
-              <Inside />
-            </ProtectedLayout>
-          }
-        />
+        {/* Rota protegida para a página inicial / inside */}
+        <Route path={routes.inicio} element={<Inside />} />
+        
+        {/* Rota para login */}
         <Route path={routes.login} element={<Login />} />
+        
+        {/* Rota para cadastro */}
         <Route path={routes.cadastro} element={<Register />} />
-        <Route path={routes.esqueciSenha} element={<EsqueciSenha />} /> 
+        
+        {/* Rota para recuperação de senha */}
+        <Route path={routes.esqueciSenha} element={<EsqueciSenha />} />
       </Routes>
     </AuthProvider>
   </BrowserRouter>
