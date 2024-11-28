@@ -14,10 +14,15 @@ const MeuPonto = () => {
   const [location, setLocation] = useState<{ lat: number; lng: number }>({ lat: 0, lng: 0 });
   const [horaDoDia, setHoraDoDia] = useState(new Date());
   const [pontos, setPontos] = useState<Ponto[]>([]);
+  const [usuarioLogado, setUsuarioLogado] = useState('');
 
   const { handleLogout } = useContext(AuthContext);
 
   useEffect(() => {
+    // Recuperar o nome do usuário logado do localStorage
+    const storedUser = localStorage.getItem('nomeUsuario');
+    setUsuarioLogado(storedUser || 'Usuário');
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         setLocation({
@@ -92,9 +97,12 @@ const MeuPonto = () => {
           <h1 className={style.title}>Ponto</h1>
           <div className={style.clockContainer}>
             <p className={style.clock}>{horaAtual}</p>
-            <button onClick={handleLogout} className={style.logoutButton}>
-            Sair
-          </button>
+            <div className={style.profile}>
+              <span>Bem-vindo, {usuarioLogado}</span>
+              <button onClick={handleLogout} className={style.logoutButton}>
+                Sair
+              </button>
+            </div>
           </div>
           <div className={style.alert}>Você possui 09 inconsistências</div>
         </header>
@@ -104,12 +112,11 @@ const MeuPonto = () => {
       <div className={style.content}>
         <div className={style.timeRecordsContainer}>
           <article className={style.timeRecords}>
-           
             <div className={style.buttonContainer}>
-          <button onClick={handleRegister} className={style.batidaDePontoButton}>
-            Bater ponto
-          </button>
-        </div>
+              <button onClick={handleRegister} className={style.batidaDePontoButton}>
+                Bater ponto
+              </button>
+            </div>
             <table className={style.table}>
               <thead>
                 <tr>
@@ -137,34 +144,33 @@ const MeuPonto = () => {
           </article>
         </div>
         <div className={style.summaryContainer}>
-        
-              {/* Calendário */}
-        <div className={style.calendarContainer}>
-          <div className={style.calendarioHeader}>
-            <button onClick={() => handleChangeMonth('prev')} className={style.carouselButton}>
-              &lt;
-            </button>
-            <span className={style.monthTitle}>
-              {activeDate.toLocaleString('pt-BR', { month: 'long', year: 'numeric' })}
-            </span>
-            <button onClick={() => handleChangeMonth('next')} className={style.carouselButton}>
-              &gt;
-            </button>
+          {/* Calendário */}
+          <div className={style.calendarContainer}>
+            <div className={style.calendarioHeader}>
+              <button onClick={() => handleChangeMonth('prev')} className={style.carouselButton}>
+                &lt;
+              </button>
+              <span className={style.monthTitle}>
+                {activeDate.toLocaleString('pt-BR', { month: 'long', year: 'numeric' })}
+              </span>
+              <button onClick={() => handleChangeMonth('next')} className={style.carouselButton}>
+                &gt;
+              </button>
+            </div>
+            <div className={style.calendar}>
+              {generateDaysOfMonth(activeDate).map((day, index) => (
+                <div
+                  key={index}
+                  className={`${style.day} ${day.toDateString() === new Date().toDateString() ? style.today : ''}`}
+                >
+                  {day.getDate()}
+                </div>
+              ))}
+            </div>
           </div>
-          <div className={style.calendar}>
-            {generateDaysOfMonth(activeDate).map((day, index) => (
-              <div
-                key={index}
-                className={`${style.day} ${day.toDateString() === new Date().toDateString() ? style.today : ''}`}
-              >
-                {day.getDate()}
-              </div>
-            ))}
+          <div className={style.heroContainer}>
+            <img src={heroImage} alt="Hero" className={style.heroImage} />
           </div>
-        </div>
-        <div className={style.heroContainer}>
-                  <img src={heroImage} alt="Hero" className={style.heroImage} />
-             </div>
           <article className={style.summary}>
             <h2>Total de horas</h2>
             <div className={style.totalHoursBox}>
@@ -183,13 +189,10 @@ const MeuPonto = () => {
                 allowFullScreen
                 aria-label="Mapa da sua localização"
               ></iframe>
-              
             </div>
           </article>
         </div>
       </div>
-
-      
     </div>
   );
 };

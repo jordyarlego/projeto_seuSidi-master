@@ -1,98 +1,113 @@
 import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import style from './style.module.css';
-import { useNavigate } from 'react-router-dom';  // Importe o useNavigate
+import { routes } from '../../../Router/routes';
 
 const CardRegister = () => {
-  const [username, setUsername] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [phone, setPhone] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [confirmPassword, setConfirmPassword] = useState<string>("");
-  const [error, setError] = useState<string>("");
+  const [nome, setNome] = useState('');
+  const [email, setEmail] = useState('');
+  const [telefone, setTelefone] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState<string>('');
+  const navigate = useNavigate();
 
-  const navigate = useNavigate();  // Crie a constante navigate para redirecionar
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleRegister = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (password !== confirmPassword) {
-      setError("As senhas não coincidem!");
+    // Validações de campos vazios
+    if (!nome || !email || !telefone || !password || !confirmPassword) {
+      setError('Todos os campos são obrigatórios.');
       return;
     }
 
+    // Validação de e-mail
+    if (!validateEmail(email)) {
+      setError('Por favor, insira um e-mail válido.');
+      return;
+    }
+
+    // Validação de senha
+    if (password !== confirmPassword) {
+      setError('As senhas não coincidem.');
+      return;
+    }
+
+    // Recuperar usuários já cadastrados
     const users = JSON.parse(localStorage.getItem('users') || '[]') as {
-      username: string;
+      nome: string;
       email: string;
-      phone: string;
+      telefone: string;
       password: string;
     }[];
 
-    const userExists = users.some(
-      (user) => user.username === username || user.email === email
-    );
-
+    // Verificar se o e-mail já está cadastrado
+    const userExists = users.some((user) => user.email === email);
     if (userExists) {
-      setError("Usuário ou e-mail já cadastrado!");
+      setError('Este e-mail já está cadastrado.');
       return;
     }
 
-    const newUser = { username, email, phone, password };
-    users.push(newUser);
-    localStorage.setItem('users', JSON.stringify(users));
+    // Salvar novo usuário
+    const newUser = { nome, email, telefone, password };
+    const updatedUsers = [...users, newUser];
+    localStorage.setItem('users', JSON.stringify(updatedUsers));
 
-    setUsername("");
-    setEmail("");
-    setPhone("");
-    setPassword("");
-    setConfirmPassword("");
-    setError("");
+    // Salvar o nome do usuário no localStorage para uso após login
+    localStorage.setItem('nomeUsuario', nome);
 
-    alert("Cadastro realizado com sucesso!");
-
-    // Redireciona para a página de login após o cadastro
-    navigate('/');  // Ou use o caminho de login da sua aplicação, como `routes.login`
+    alert('Cadastro realizado com sucesso!');
+    navigate(routes.login); // Redirecionar para a página de login
   };
 
   return (
     <section className={style.container}>
       <div className={style.registerBox}>
-        <h2 className={style.welcome}>Criar Conta</h2>
-        <form onSubmit={handleSubmit}>
+        <h2>Crie sua conta</h2>
+        <form onSubmit={handleRegister}>
           <input
             type="text"
-            placeholder="Nome de usuário"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Seu nome"
+            value={nome}
+            onChange={({ target }) => setNome(target.value)}
           />
           <input
             type="email"
             placeholder="E-mail"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={({ target }) => setEmail(target.value)}
           />
           <input
             type="text"
             placeholder="Telefone"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
+            value={telefone}
+            onChange={({ target }) => setTelefone(target.value)}
           />
           <input
             type="password"
             placeholder="Senha"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={({ target }) => setPassword(target.value)}
           />
           <input
             type="password"
-            placeholder="Confirme a senha"
+            placeholder="Confirme sua senha"
             value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            onChange={({ target }) => setConfirmPassword(target.value)}
           />
           <button type="submit" className={style.submitButton}>
             Registrar
           </button>
+          {error && <p className={style.error}>{error}</p>}
         </form>
-        {error && <p className={style.error}>{error}</p>}
+        <p>
+          Já tem uma conta? <Link to={routes.login}>Faça login</Link>
+        </p>
       </div>
     </section>
   );

@@ -313,3 +313,21 @@ td button:hover {
   margin-right: 20px; /* Adiciona espaçamento da borda direita */
 }
 
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  color: #333;
+}
+
+.profile span {
+  font-weight: 400;
+  color: #f3f8f9;
+}
+
+.profile .userName {
+  font-weight: bold;
+  color: #007bff; /* Cor de destaque */
+}

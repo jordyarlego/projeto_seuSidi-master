@@ -12,25 +12,35 @@ const CardLogin = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    // Verifica se os campos estão preenchidos
+    if (!email || !password) {
+      setError('Por favor, preencha todos os campos!');
+      return;
+    }
+
     // Recuperar usuários do localStorage
     const users = JSON.parse(localStorage.getItem('users') || '[]') as {
       email: string;
       password: string;
     }[];
 
-    // Verificar se o usuário está cadastrado
-    const user = users.find(
-      (user) => user.email === email && user.password === password
-    );
+    // Verificar se o e-mail existe
+    const user = users.find((user) => user.email === email);
 
-    if (user) {
-      // Login bem-sucedido
-      alert('Login realizado com sucesso!');
-      navigate(routes.inicio); // Redirecionar para a página inicial após login bem-sucedido
-    } else {
-      // Login falhou
-      setError('E-mail ou senha inválidos.');
+    if (!user) {
+      setError('E-mail não encontrado. Verifique e tente novamente.');
+      return;
     }
+
+    // Verificar se a senha está correta
+    if (user.password !== password) {
+      setError('Senha incorreta. Tente novamente.');
+      return;
+    }
+
+    // Login bem-sucedido
+    alert('Login realizado com sucesso!');
+    navigate(routes.inicio); // Redirecionar para a página inicial após login bem-sucedido
   };
 
   return (
